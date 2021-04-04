@@ -6,10 +6,10 @@
   "scripts": {
     "analyze": "source-map-explorer lib/**/*.js",
     "build:code": "rollup --config",
-    "build:images": "npm run clean:images && node tools/compose-images.mjs",
+    "build:theme": "npm run clean:theme && node tools/compose-images.mjs",
     "build": "npm-run-all --parallel build:*",
     "clean:code": "rimraf ./lib",
-    "clean:images": "rimraf ./images",
+    "clean:theme": "rimraf ./images",
     "clean": "npm-run-all --parallel clean:*",
     "dev": "npm run start",
     "install:theme": "degit --force atom/atom/resources/app-icons#v1.55.0 .app-icons",
@@ -17,7 +17,7 @@
     "lint:styles": "stylelint --allow-empty-input styles/*.{css,less}",
     "lint": "npm-run-all --parallel lint:*",
     "postinstall:husky": "husky install",
-    "postinstall:images": "npm run build:images",
+    "postinstall:theme": "npm run build:theme",
     "postinstall": "npm-run-all --parallel postinstall:*",
     "prepublishOnly": "npm run build",
     "start": "rollup --watch --config",
@@ -58,6 +58,7 @@
     }
   },
   "dependencies": {
+    "isexe": "^2.0.0",
     "node-notifier": "^9.0.1"
   },
   "devDependencies": {
