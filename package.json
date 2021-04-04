@@ -51,7 +51,7 @@
     "notify": {
       "description": "Opens files/folders in your file manager",
       "versions": {
-        "1.0.0": "provideNotify"
+        "0.1.0": "provideNotify"
       }
     }
   },
