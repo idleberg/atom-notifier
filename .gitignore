@@ -12,5 +12,6 @@ yarn-error.log
 tsconfig.tsbuildinfo
 
 # Project specific
+*.psd
 .app-icons/
-images/
+images/atom
