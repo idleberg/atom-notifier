@@ -14,4 +14,5 @@ tsconfig.tsbuildinfo
 # Project specific
 *.psd
 .app-icons/
-images/atom
+images/atom-*.png
+images/*.ico
