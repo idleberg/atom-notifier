@@ -13,16 +13,16 @@ export const configSchema = {
       description: 'Choose an icon theme for your notifications',
       type: 'string',
       enum: [
-        // {
-        //   value: 'appIconWithBadge',
-        //   description: 'App Icon with Badge'
-        // },
+        {
+          value: 'appIconWithBadge',
+          description: 'App Icon with Badge'
+        },
         {
           value: 'badge',
           description: 'Badge'
         }
       ],
-      default: 'appIconWithBadge',
+      default: 'badge',
       order: 3
     },
     overrides: {
