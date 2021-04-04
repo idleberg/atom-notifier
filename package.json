@@ -16,7 +16,7 @@
     "lint:code": "eslint --ignore-path .gitignore --no-error-on-unmatched-pattern ./src/**/*.ts",
     "lint:styles": "stylelint --allow-empty-input styles/*.{css,less}",
     "lint": "npm-run-all --parallel lint:*",
-    "postinstall": "husky install",
+    "postinstall": "husky install && npm run theme",
     "prepublishOnly": "npm run build",
     "start": "rollup --watch --config",
     "test": "npm run lint",
