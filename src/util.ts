@@ -1,8 +1,8 @@
 import { getConfig } from './config';
 import { join } from 'path';
 
-function getContentImage(type) {
-  const { iconTheme } = getConfig();
+function getContentImage(type: string): string {
+  const iconTheme = String(getConfig('iconTheme'));
 
   switch (iconTheme) {
     case 'appIconWithBadge':
@@ -16,7 +16,7 @@ function getContentImage(type) {
   }
 }
 
-function handleIconOverride(icon) {
+function handleIconOverride(icon: string): string {
     const overrideSound = getConfig('overrides.icon');
     const defaultIcon = join(__dirname, '..', `/images/atom-${atom.getReleaseChannel()}.png`);
 
@@ -28,11 +28,11 @@ function handleIconOverride(icon) {
         return icon || defaultIcon;
 
       default:
-        icon;
+        return icon;
     }
 }
 
-function handleSoundOverride(playSound) {
+function handleSoundOverride(playSound: boolean): boolean {
     const overrideSound = getConfig('overrides.sound');
 
     switch (overrideSound) {
@@ -47,7 +47,7 @@ function handleSoundOverride(playSound) {
     }
 }
 
-function mapNotificationType(type) {
+function mapNotificationType(type: string): string {
   type = type.toLowerCase();
 
   switch(type) {

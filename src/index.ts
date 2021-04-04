@@ -1,7 +1,6 @@
 import meta from '../package.json';
 
 import { CompositeDisposable } from 'atom';
-import { join } from 'path';
 import { configSchema, getConfig } from './config';
 import { mapNotificationType } from './util';
 import notify from './notify';
@@ -15,11 +14,6 @@ export default {
 
   async activate(): Promise<void> {
     if (atom.inDevMode()) console.log('[notify] Activating package');
-
-    let hideInEditor = getConfig('hideInEditor');
-    atom.config.observe(`${meta.name}.hideInEditor`, currentValue => {
-      hideInEditor = currentValue;
-    });
 
     this.showWhenFocused = getConfig('showWhenFocused');
     atom.config.observe(`${meta.name}.showWhenFocused`, currentValue => {
@@ -83,7 +77,7 @@ export default {
     }
   },
 
-  intercept(notification) {
+  intercept(notification: Notification): void {
     const type = mapNotificationType(notification.getType().toLowerCase());
     const title = notification.getMessage();
     const message = notification.getDetail();
@@ -102,7 +96,7 @@ export default {
     this.notify(params);
   },
 
-  notify(notifyOptions) {
+  notify(notifyOptions: Notification): void {
     const params = {
       ...notifyOptions,
       sender: 'com.github.atom',

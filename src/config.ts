@@ -96,7 +96,7 @@ export const configSchema = {
     }
 };
 
-export function getConfig(key = ''): any {
+export function getConfig(key = ''): unknown {
   return key?.length
     ? atom.config.get(`${meta.name}.${key}`)
     : atom.config.get(`${meta.name}`);
