@@ -1,3 +1,16 @@
-.DS_Store
-npm-debug.log
-node_modules
+# Package Managers
+bower_components/
+node_modules/
+*npm-debug.log*
+yarn-error.log
+
+# Development
+.eslintcache
+.rollup.cache/
+.stylelintcache
+.yo-rc.json
+tsconfig.tsbuildinfo
+
+# Project specific
+.app-icons/
+images/
