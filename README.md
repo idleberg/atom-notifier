@@ -1,32 +1,82 @@
-# Native desktop notifications for Atom
+# notify
 
-Native desktop notifications for Atom with [node-notifier](https://github.com/mikaelbr/node-notifier).  
+[![apm](https://flat.badgen.net/apm/license/notify)](https://atom.io/packages/notify)
+[![apm](https://flat.badgen.net/apm/v/notify)](https://atom.io/packages/notify)
+[![apm](https://flat.badgen.net/apm/dl/notify)](https://atom.io/packages/notify)
+[![David](https://flat.badgen.net/david/dep/idleberg/atom-notify)](https://david-dm.org/idleberg/node-makensis)
 
-[Atom.io](https://atom.io/packages/atom-notifier)  \| [GitHub](https://github.com/benjamindean/atom-notifier)
+# Description
 
-`apm install atom-notifier`
+Native desktop notifications for Atom. This package is a fork of [atom-notifier][atom-notifier] by Benjamin Dean.
 
-![atom-notifier](https://cloud.githubusercontent.com/assets/5139993/8745652/c1d9597c-2c8a-11e5-8c10-c8ed3af6722f.png)
+Differences:
 
-## Currently tested on:
+- written in TypeScript
+- service provider for third-party packages
+- icon themes
 
--   [x] Arch Linux (GNOME 3.16)
--   [x] Arch Linux (KDE Plasma 5)
--   [x] Ubuntu 15.04 (Unity)
--   [x] Windows 8
--   [x] Windows 7
--   [x] Windows XP
+## Installation
 
-## Options
+### apm
 
-This package doesn't watch for option changes. To apply new settings, reload editor with <kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>R</kbd>.
+Install `notify` from Atom [install view](atom://settings-view/show-package?package=notify) or use the command-line equivalent:
 
--   Show only when editor is unfocused  
-    Description: Show desktop notifications only when editor is unfocused or minimized.  
-    Default: false
+`$ apm install notify`
 
--   Show editor notifications?  
-    Description: Which notifications to show in editor window.  
-    Default: 'Show All'  
-    Available: 'Show All', 'Show Errors and Fatal Errors', 'Hide All'  
-    NOTE: Some notifications has buttons or large description text, so, better to leave this option as "Show All" or "Show Errors and Fatal Errors".
+### Using Git
+
+Change to your Atom packages directory:
+
+**Windows**
+
+```powershell
+# Powershell
+$ cd $Env:USERPROFILE\.atom\packages
+```
+
+```cmd
+:: Command Prompt
+$ cd %USERPROFILE%\.atom\packages
+```
+
+**Linux & macOS**
+
+```bash
+$ cd ~/.atom/packages/
+```
+
+Clone the repository as `notify`:
+
+```bash
+$ git clone https://github.com/idleberg/atom-notify notify
+```
+
+Install dependencies:
+
+```bash
+cd notify && npm install
+```
+
+## Usage
+
+### Service Provider
+
+This package provides the service to notify users. To consume it, add the following to your `package.json`:
+
+```json
+{
+  "consumedServices": {
+    "notify": {
+      "versions": {
+        "0.1.0": "consumeNotify"
+      }
+    }
+  }
+}
+```
+
+## License
+
+This work is licensed under the [MIT License](LICENSE)
+
+[atom-notifier]: https://atom.io/packages/atom-notifier
