@@ -1,4 +1,4 @@
-Copyright (c) 2015 Benjamin Dean
+Copyright (c) 2015-2018 Benjamin Dean, 2021 Jan T. Sott
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
