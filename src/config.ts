@@ -1,9 +1,16 @@
 import meta from '../package.json';
 
 export const configSchema = {
+    injectNotifications: {
+        title: 'Inject Notifications',
+        description: `Shows native notifications whenever an Atom notification is triggered`,
+        type: 'boolean',
+        default: true,
+        order: 0
+    },
     showWhenFocused: {
         title: 'Show when focused',
-        description: `Shows desktop notifications when the editor has focus`,
+        description: `Shows desktop notifications only when the editor has focus`,
         type: 'boolean',
         default: false,
         order: 1
@@ -23,13 +30,13 @@ export const configSchema = {
         }
       ],
       default: 'badge',
-      order: 3
+      order: 2
     },
     overrides: {
       title: 'Overrides',
       description: 'The following settings only take effect when Atom runs in developer mode',
       type: 'object',
-      order: 4,
+      order: 3,
       properties: {
         sound: {
           title: 'Sound',
@@ -77,7 +84,7 @@ export const configSchema = {
       title: 'Developer',
       description: 'The following settings only take effect when Atom runs in developer mode.',
       type: 'object',
-      order: 5,
+      order: 4,
       properties: {
         enableCommands: {
           title: 'Enable Commands',

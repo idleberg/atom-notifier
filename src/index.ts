@@ -20,11 +20,13 @@ export default {
       this.showWhenFocused = currentValue;
     });
 
-    this.subscriptions.add(atom.notifications.onDidAddNotification(Notification => {
-      if (this.showWhenFocused || document.body.classList.contains('is-blurred')) {
+    if (getConfig('injectNotifications')) {
+      this.subscriptions.add(atom.notifications.onDidAddNotification(Notification => {
+        if (this.showWhenFocused || document.body.classList.contains('is-blurred')) {
           if (Notification) return this.intercept(Notification);
-      }
-    }));
+        }
+      }));
+    }
 
     if (atom.inDevMode()) {
       if (getConfig('developer.enableCommands')) {
