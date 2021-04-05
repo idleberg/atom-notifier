@@ -35,7 +35,7 @@ export default [
   {
     input: 'src/index.ts',
     output: {
-      file: 'lib/notify',
+      file: 'lib/notify.js',
       exports: 'auto',
       format: 'cjs',
       sourcemap: true
