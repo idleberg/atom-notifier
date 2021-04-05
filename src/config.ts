@@ -89,6 +89,7 @@ export const configSchema = {
         enableCommands: {
           title: 'Enable Commands',
           description: 'Exposes a number of demo commands to Atom',
+          type: 'boolean',
           default: true,
           order: 1
         },
