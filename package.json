@@ -20,7 +20,7 @@
     "prepublishOnly": "npm run build",
     "start": "rollup --watch --config",
     "test": "npm run lint",
-    "theme": "npm-run-all install:theme build:theme"
+    "theme": "npm run install:theme && npm run build:theme"
   },
   "keywords": [],
   "repository": {
