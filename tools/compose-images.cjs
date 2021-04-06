@@ -53,9 +53,6 @@ async function copyFile(source, target) {
     await Promise.all(types.map(async type => {
       const overlayImage = resolve(process.cwd(), `src/images/badge-${type}.png`);
 
-      const badgePath = resolve(process.cwd(), `src/images/badge-${type}.png`);
-      await copyFile(badgePath, `images/badge-${type}.png`);
-
       sharp(imagePath)
         .composite([
           {
