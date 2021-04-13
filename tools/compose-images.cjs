@@ -54,7 +54,7 @@ async function copyFile(source, target) {
       const overlayImage = join(process.cwd(), `images/badge-${type}.png`);
 
       const resizedOverlay = await sharp(overlayImage)
-        .resize({ width: 400, height: 400 })
+        .resize({ width: 420, height: 420 })
         .toBuffer();
 
       sharp(imagePath)
