@@ -3,6 +3,7 @@
 [![apm](https://flat.badgen.net/apm/license/notify)](https://atom.io/packages/notify)
 [![apm](https://flat.badgen.net/apm/v/notify)](https://atom.io/packages/notify)
 [![apm](https://flat.badgen.net/apm/dl/notify)](https://atom.io/packages/notify)
+[![CircleCI](https://flat.badgen.net/circleci/github/idleberg/atom-notify)](https://circleci.com/gh/idleberg/atom-notify)
 [![David](https://flat.badgen.net/david/dep/idleberg/atom-notify)](https://david-dm.org/idleberg/atom-notify)
 
 # Description
