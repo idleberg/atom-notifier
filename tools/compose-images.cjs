@@ -1,5 +1,5 @@
 const sharp = require('sharp');
-const { resolve } = require('path');
+const { join } = require('path');
 const { promises: fs } = require('fs');
 const logSymbols = require('log-symbols');
 
@@ -44,32 +44,38 @@ async function copyFile(source, target) {
   }
 
   await Promise.all(channels.map(async channel => {
-    const imagePath = resolve(process.cwd(), `.app-icons/${channel}/png/1024.png`);
-    const iconPath = resolve(process.cwd(), `.app-icons/${channel}/atom.ico`);
+    const imagePath = join(process.cwd(), `.app-icons/${channel}/png/1024.png`);
+    const iconPath = join(process.cwd(), `.app-icons/${channel}/atom.ico`);
 
     await copyFile(iconPath, `images/atom-${channel}.ico`);
     await copyFile(imagePath, `images/atom-${channel}.png`);
 
     await Promise.all(types.map(async type => {
-      const overlayImage = resolve(process.cwd(), `src/images/badge-${type}.png`);
+      const overlayImage = join(process.cwd(), `images/badge-${type}.png`);
+
+      const resizedOverlay = await sharp(overlayImage)
+        .resize({ width: 400, height: 400 })
+        .toBuffer();
 
       sharp(imagePath)
         .composite([
           {
             gravity: 'southeast',
-            input: overlayImage,
+            input: resizedOverlay,
             top: 592,
-            left: 592
-
+            left: 592,
+            width: '50%'
           }
         ])
-        .toFile(`images/atom-${channel}-${type}.png`, err => {
+        .toFile(join(process.cwd(), `images/atom-${channel}-${type}.png`), err => {
+          console.error(err);
+
           let imageStatus = err
             ? logSymbols.error
             : logSymbols.success;
 
           console.log(`${imageStatus} Created images/atom-${channel}-${type}.png`);
-        });
+        })
     }));
   }));
 })();
