@@ -68,7 +68,7 @@ async function copyFile(source, target) {
           }
         ])
         .toFile(join(process.cwd(), `images/atom-${channel}-${type}.png`), err => {
-          console.error(err);
+          if (err) console.error(err);
 
           let imageStatus = err
             ? logSymbols.error
