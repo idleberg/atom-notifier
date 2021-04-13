@@ -3,6 +3,7 @@ import meta from '../package.json';
 import { CompositeDisposable } from 'atom';
 import { configSchema, getConfig } from './config';
 import { mapNotificationType } from './util';
+import Logger from "./log";
 import notify from './notify';
 
 export default {
@@ -13,7 +14,7 @@ export default {
   subscriptions: new CompositeDisposable(),
 
   async activate(): Promise<void> {
-    if (atom.inDevMode()) console.log('[notify] Activating package');
+    Logger.log('Activating package');
 
     this.showWhenFocused = getConfig('showWhenFocused');
     atom.config.observe(`${meta.name}.showWhenFocused`, currentValue => {
@@ -109,14 +110,14 @@ export default {
   },
 
   deactivate(): void {
-    if (atom.inDevMode()) console.log('[notify] Deactivating package');
+    Logger.log('Deactivating package');
 
     this.subscriptions?.dispose();
   },
 
 
   provideNotify(): unknown {
-    if (atom.inDevMode()) console.log('[notify] Providing service');
+    Logger.log('Providing service');
 
     return this.notify;
   }
