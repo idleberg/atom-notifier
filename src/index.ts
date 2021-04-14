@@ -81,10 +81,10 @@ export default {
   },
 
   intercept(notification: Notification): void {
-    const type = mapNotificationType(notification.getType().toLowerCase());
-    const title = notification.getMessage();
-    const message = notification.getDetail();
-    const { dismissable } = notification.getOptions();
+    const type = mapNotificationType((notification as any).getType().toLowerCase());
+    const title = (notification as any).getMessage();
+    const message = (notification as any).getDetail();
+    const { dismissable } = (notification as any).getOptions();
 
     const params = {
       type: type,
@@ -106,7 +106,7 @@ export default {
       appID: 'com.squirrel.atom.atom',
     };
 
-    notify[notifyOptions.type](params);
+    notify[notifyOptions['type']](params);
   },
 
   deactivate(): void {

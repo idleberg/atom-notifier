@@ -12,7 +12,7 @@ function __notify__(type: string, notification: Notification): void {
     appID: 'com.squirrel.atom.atom',
     icon: handleIconOverride(notification.icon),
     contentImage: getContentImage(type),
-    sound: handleSoundOverride(notification.sound)
+    sound: handleSoundOverride(notification['sound'])
   };
 
   notifier.notify(params);
