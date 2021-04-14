@@ -56,6 +56,7 @@
     }
   },
   "dependencies": {
+    "@atxm/developer-console": "^0.4.0",
     "degit": "^2.8.4",
     "log-symbols": "^4.1.0",
     "node-notifier": "^9.0.1",
