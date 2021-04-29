@@ -101,9 +101,7 @@ export default {
 
   notify(notifyOptions: Notification): void {
     const params = {
-      ...notifyOptions,
-      sender: 'com.github.atom',
-      appID: 'com.squirrel.atom.atom',
+      ...notifyOptions
     };
 
     notify[notifyOptions['type']](params);
