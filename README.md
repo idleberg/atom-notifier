@@ -58,6 +58,12 @@ Install dependencies:
 cd notify && npm install
 ```
 
+Build source:
+
+```bash
+$ npm run build
+```
+
 ## Usage
 
 ### Service Provider
