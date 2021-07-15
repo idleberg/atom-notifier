@@ -1,19 +1,20 @@
-import meta from '../package.json';
+import { name } from '../package.json';
 
-export const configSchema = {
+export default {
+  schema: {
     injectNotifications: {
-        title: 'Inject Notifications',
-        description: `Shows native notifications whenever an Atom notification is triggered`,
-        type: 'boolean',
-        default: true,
-        order: 0
+      title: 'Inject Notifications',
+      description: `Shows native notifications whenever an Atom notification is triggered`,
+      type: 'boolean',
+      default: true,
+      order: 0
     },
     showWhenFocused: {
-        title: 'Show when focused',
-        description: `Shows desktop notifications only when the editor has focus`,
-        type: 'boolean',
-        default: false,
-        order: 1
+      title: 'Show when focused',
+      description: `Shows desktop notifications only when the editor has focus`,
+      type: 'boolean',
+      default: false,
+      order: 1
     },
     iconTheme: {
       title: 'Icon Theme',
@@ -102,10 +103,41 @@ export const configSchema = {
         }
       }
     }
-};
+  },
 
-export function getConfig(key = ''): unknown {
-  return key?.length
-    ? atom.config.get(`${meta.name}.${key}`)
-    : atom.config.get(`${meta.name}`);
-}
+  get(key = ''): any {
+    return key?.length ? atom.config.get(`${name}.${key}`) : atom.config.get(`${name}`);
+  },
+
+  migrate(oldKey: string, newKey: string): void {
+    if (!atom.config.get(`${name}.${oldKey}`) || atom.config.get(`${name}.${newKey}`)) {
+      return;
+    }
+
+    try {
+      atom.config.set(`${name}.${newKey}`, atom.config.get(`${name}.${oldKey}`));
+    } catch (error) {
+      atom.notifications.addWarning(`Failed to migrate configuration, see console for details`);
+
+      return;
+    }
+
+    atom.config.unset(`${name}.${oldKey}`);
+  },
+
+  unset(key = ''): void {
+    const unsetKey = key?.length ? `${name}.${key}` : name;
+
+    atom.config.unset(String(unsetKey));
+  },
+
+  async open(options = {}): Promise<void> {
+    options = {
+      pending: true,
+      searchAllPanes: true,
+      ...options,
+    };
+
+    await atom.workspace.open(`atom://config/packages/${name}`, options);
+  }
+};

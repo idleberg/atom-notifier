@@ -1,7 +1,7 @@
 import { getContentImage, handleIconOverride, handleSoundOverride } from './util';
 import notifier from 'node-notifier';
 
-function __notify__(type: string, notification: Notification): void {
+function __notify__(type: string, notification: any): void {
   notification = typeof notification === 'string' ? {
     message: notification
   } : notification;
@@ -20,22 +20,22 @@ function __notify__(type: string, notification: Notification): void {
 
 export default {
   error(notification: Notification): void {
-    __notify__('error' ,notification);
+    __notify__('error', notification);
   },
 
   fatalError(notification: Notification): void {
-    __notify__('fatal' ,notification);
+    __notify__('fatal', notification);
   },
 
   info(notification: Notification): void {
-    __notify__('info' ,notification);
+    __notify__('info', notification);
   },
 
   success(notification: Notification): void {
-    __notify__('success' ,notification);
+    __notify__('success', notification);
   },
 
   warn(notification: Notification): void {
-    __notify__('warning' ,notification);
+    __notify__('warning', notification);
   }
 };

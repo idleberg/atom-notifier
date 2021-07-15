@@ -1,13 +1,13 @@
 import meta from '../package.json';
 
 import { CompositeDisposable } from 'atom';
-import { configSchema, getConfig } from './config';
+import Config from './config';
 import { mapNotificationType } from './util';
 import Logger from "./log";
 import notify from './notify';
 
 export default {
-  config: configSchema,
+  config: Config.schema,
   contentImage: null,
   icon: null,
   showWhenFocused: false,
@@ -16,12 +16,12 @@ export default {
   async activate(): Promise<void> {
     Logger.log('Activating package');
 
-    this.showWhenFocused = getConfig('showWhenFocused');
+    this.showWhenFocused = Config.get('showWhenFocused');
     atom.config.observe(`${meta.name}.showWhenFocused`, currentValue => {
       this.showWhenFocused = currentValue;
     });
 
-    if (getConfig('injectNotifications')) {
+    if (Config.get('injectNotifications')) {
       this.subscriptions.add(atom.notifications.onDidAddNotification(Notification => {
         if (this.showWhenFocused || document.body.classList.contains('is-blurred')) {
           if (Notification) return this.intercept(Notification);
@@ -30,7 +30,7 @@ export default {
     }
 
     if (atom.inDevMode()) {
-      if (getConfig('developer.enableCommands')) {
+      if (Config.get('developer.enableCommands')) {
         this.subscriptions.add(
           atom.commands.add('atom-workspace', {
             'notify:show-error': () => this.notify({
@@ -74,7 +74,7 @@ export default {
         );
       }
 
-      if (getConfig('developer.exposeToWindow')) {
+      if (Config.get('developer.exposeToWindow')) {
         window['notify'] = notify;
       }
     }
